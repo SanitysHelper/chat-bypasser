@@ -82,20 +82,28 @@ end)
 
 repeat wait() until chatbox ~= nil
 depression:Disconnect()
-chatbox.FocusLost:Connect(function(pressed)
-    if pressed then
-        text = chatbox.Text:split(" ")
-        local returning = {}
-        for i,v in pairs(text) do
-            for q,e in pairs(swears) do
-                if v:lower():match(e) then
-                    v = v:lower():gsub(e, replacements[q])
+while wait() do
+    if chatbox then
+        chatbox.FocusLost:Connect(function(pressed)
+            if pressed then
+                text = chatbox.Text:split(" ")
+                local returning = {}
+                for i,v in pairs(text) do
+                    for q,e in pairs(swears) do
+                        if v:lower():match(e) then
+                            v = v:lower():gsub(e, replacements[q])
+                        end
+                    end
+                    
+                    
+                    returning[#returning+1] = v
                 end
+                chatbox.Text = table.concat(returning," ")
             end
-            
-            
-            returning[#returning+1] = v
-        end
-        chatbox.Text = table.concat(returning," ")
+        end)
+        repeat wait() until not chatbox or not chatbox:IsDescendantOf(game.Players.LocalPlayer.PlayerGui.Chat)
+        chatbox = nil
+    else
+        chatbox = game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
     end
-end)
+end
