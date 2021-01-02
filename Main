@@ -5,7 +5,7 @@ pcall(function()
 end)
 -- ʿ
 -- ˤ
-local bypasschar = "ʿ"
+local bypasschar = "ˤ"
 
 local swears = {
     "fuck", 
@@ -27,18 +27,19 @@ local swears = {
     "hentai",
     "sex",
     "hell",
-    "cock"
+    "cock",
+    "bitch"
 }
 
 local replacements = {
-    "f".. bypasschar.. "uck",
+    "f".. bypasschar.. "uc".. bypasschar.."k",
     "cu".. bypasschar.. "nt",
     "sh".. bypasschar.. "it",
-    "ass".. bypasschar.. "",
+    "a".. bypasschar.."ss".. bypasschar,
     "pen".. bypasschar.. "is",
-    "pu".. bypasschar.. "s".. bypasschar.."sy",
-    "spa".. bypasschar.. "nk",
-    "di".. bypasschar.. "ck",
+    "pus".. bypasschar.."s".. bypasschar.."y",
+    "spa".. bypasschar.. "nk".. bypasschar,
+    "di".. bypasschar.. "c".. bypasschar.."k",
     "wh".. bypasschar.. "ore",
     "mo".. bypasschar.. "an",
     "gro".. bypasschar.. "an",
@@ -50,7 +51,8 @@ local replacements = {
     "hen".. bypasschar.. "tai",
     "se".. bypasschar.. "x",
     "he".. bypasschar.. "ll",
-    "co".. bypasschar.. "ck"
+    "co".. bypasschar.. "ck",
+    "bi".. bypasschar.."tch".. bypasschar
 }
 
 function getpath(instance)
@@ -71,6 +73,7 @@ end
 
 local depression = uis.TextBoxFocusReleased:Connect(function(thing)
     chatbox = thing
+    print("Custom chat loaded")
 end)
 
 repeat wait() until chatbox ~= nil
