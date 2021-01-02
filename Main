@@ -55,7 +55,7 @@ local replacements = {
     "he".. bypasschar.. "ll",
     "co".. bypasschar.. "ck",
     "bi".. bypasschar.."tch".. bypasschar,
-    "dis"..bypasschar.."cord",
+    "disco"..bypasschar.."rd",
     "vo"..bypasschar.."dk"..bypasschar.."a"
 }
 
