@@ -5,7 +5,7 @@ pcall(function()
 end)
 -- ʿ
 -- ˤ
-local bypasschar = "ˤ"
+local bypasschar = "ʿ"
 
 local swears = {
     "fuck", 
@@ -28,11 +28,13 @@ local swears = {
     "sex",
     "hell",
     "cock",
-    "bitch"
+    "bitch",
+    "discord",
+    "vodka"
 }
 
 local replacements = {
-    "f".. bypasschar.. "uc".. bypasschar.."k",
+    bypasschar.."f".. bypasschar.. "uc".. bypasschar.."k",
     "cu".. bypasschar.. "nt",
     "sh".. bypasschar.. "it",
     "a".. bypasschar.."ss".. bypasschar,
@@ -52,7 +54,9 @@ local replacements = {
     "se".. bypasschar.. "x",
     "he".. bypasschar.. "ll",
     "co".. bypasschar.. "ck",
-    "bi".. bypasschar.."tch".. bypasschar
+    "bi".. bypasschar.."tch".. bypasschar,
+    "dis"..bypasschar.."cord",
+    "vo"..bypasschar.."dk"..bypasschar.."a"
 }
 
 function getpath(instance)
