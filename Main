@@ -1,63 +1,55 @@
+function concat(table,adding)
+    local returningoof = ""
+        for i,v in pairs(table) do
+            returningoof = returningoof..v..adding
+        end
+    return returningoof
+end
+
 local uis = game:GetService("UserInputService")
 local chatbox = nil
 pcall(function()
     chatbox = game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
 end)
--- ʿ
--- ˤ
+--[[bypass chars
+1.ʿ
+2.ˤ
+]]
+
 local bypasschar = "ʿ"
 
-local swears = {
-    "fuck", 
-    "cunt", 
-    "shit", 
-    "ass", 
-    "penis", 
-    "pussy", 
-    "spank", 
-    "dick", 
-    "whore", 
-    "moan", 
-    "groan", 
-    "nigga", 
-    "nigger", 
-    "commit",
-    "genocide",
-    "porn",
-    "hentai",
-    "sex",
-    "hell",
-    "cock",
-    "bitch",
-    "discord",
-    "vodka"
-}
+local swears = {}
+local replacements = {}
 
-local replacements = {
-    bypasschar.."f".. bypasschar.. "uc".. bypasschar.."k",
-    "cu".. bypasschar.. "nt",
-    "sh".. bypasschar.. "it",
-    "a".. bypasschar.."ss".. bypasschar,
-    "pen".. bypasschar.. "is",
-    "pus".. bypasschar.."s".. bypasschar.."y",
-    "spa".. bypasschar.. "nk".. bypasschar,
-    "di".. bypasschar.. "c".. bypasschar.."k",
-    "wh".. bypasschar.. "ore",
-    "mo".. bypasschar.. "an",
-    "gro".. bypasschar.. "an",
-    "ni".. bypasschar.. "gga",
-    "ni".. bypasschar.. "gg".. bypasschar.. "er",
-    "com".. bypasschar.. "mit",
-    "gen".. bypasschar.. "oc".. bypasschar.. "cide",
-    "po".. bypasschar.. "rn",
-    "hen".. bypasschar.. "tai",
-    "se".. bypasschar.. "x",
-    "he".. bypasschar.. "ll",
-    "co".. bypasschar.. "ck",
-    "bi".. bypasschar.."tch".. bypasschar,
-    "disco"..bypasschar.."rd",
-    "vo"..bypasschar.."dk"..bypasschar.."a"
-}
+function as(word, replacement)
+    swears[#swears+1] = word
+    replacements[#replacements+1] = replacement
+end
+
+as('fuck', bypasschar..'f'..bypasschar..'uc'..bypasschar..'k'..bypasschar..'')
+as('cunt', 'cu'..bypasschar..'n'..bypasschar..'t')
+as('shit', 'sh'..bypasschar..'it')
+as('ass', 'a'..bypasschar..'ss'..bypasschar..'')
+as('penis', 'pen'..bypasschar..'is')
+as('pussy', 'pus'..bypasschar..'s'..bypasschar..'y')
+as('spank', 'spa'..bypasschar..'nk'..bypasschar..'')
+as('dick', 'di'..bypasschar..'c'..bypasschar..'k')
+as('whore', 'wh'..bypasschar..'ore')
+as('moan', 'mo'..bypasschar..'an')
+as('groan', 'gro'..bypasschar..'an')
+as('nigga', 'ni'..bypasschar..'gga')
+as('nigger', 'ni'..bypasschar..'gg'..bypasschar..'er')
+as('commit', 'com'..bypasschar..'mit')
+as('genocide', 'gen'..bypasschar..'oc'..bypasschar..'cide')
+as('porn', 'po'..bypasschar..'rn')
+as('hentai', 'hen'..bypasschar..'tai')
+as('sex', 'se'..bypasschar..'x')
+as('hell', 'he'..bypasschar..'ll')
+as('cock', 'co'..bypasschar..'ck')
+as('bitch', 'bi'..bypasschar..'tch'..bypasschar..'')
+as('discord', 'disco'..bypasschar..'rd')
+as('vodka', 'vo'..bypasschar..'dk'..bypasschar..'a')
+as('rape', 'rap'..bypasschar..'e')
 
 function getpath(instance)
     local path = "game."
@@ -80,9 +72,18 @@ local depression = uis.TextBoxFocusReleased:Connect(function(thing)
     print("Custom chat loaded")
 end)
 
-repeat wait() until chatbox ~= nil
+repeat wait() until chatbox ~= nil and chatbox.Parent ~= nil
 depression:Disconnect()
-while wait() do
+
+-- local texttocopy = ""
+-- for i,v in pairs(swears) do
+--     texttocopy = texttocopy.."as('"..v.."', '"..replacements[i].."')\n"
+-- end
+-- texttocopy = texttocopy:gsub(bypasschar, "'..bypasschar..'")
+-- print(texttocopy)
+-- setclipboard(texttocopy)
+
+while true do
     if chatbox then
         chatbox.FocusLost:Connect(function(pressed)
             if pressed then
