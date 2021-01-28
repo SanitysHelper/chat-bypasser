@@ -63,7 +63,7 @@ function getpath(instance)
         for i = 1,#pathtable do
             tablepath[#tablepath+1] = pathtable[#pathtable+1-i]
         end
-        path = path..table.concat(tablepath,".")
+        path = path..concat(tablepath,".")
         path = path:gsub("game.Players."..game.Players.LocalPlayer.Name, "game.Players.LocalPlayer")
         return path
 end
@@ -100,7 +100,7 @@ while true do
                     
                     returning[#returning+1] = v
                 end
-                chatbox.Text = table.concat(returning," ")
+                chatbox.Text = concat(returning," ")
             end
         end)
         repeat wait() until not chatbox or not chatbox:IsDescendantOf(game.Players.LocalPlayer.PlayerGui.Chat)
