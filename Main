@@ -7,6 +7,27 @@ function concat(table,adding)
     return returningoof
 end
 
+function split(text, splitter)
+    splitter = tostring(splitter)
+	text = text..splitter
+	local returning = {}
+	local returningtxt = ""
+	local tnumber = tonumber(#splitter) - 1
+	for i = 1,#text do
+		if text:sub(i,i+tnumber) ~= splitter and splitter ~= "" then
+			returningtxt = returningtxt..text:sub(i,i)
+		else
+			if splitter == "" then
+				returning[#returning+1] = text:sub(i,i)
+				else
+				returning[#returning+1] = returningtxt
+			end
+			returningtxt = ""
+		end
+	end
+	return returning
+end
+
 local uis = game:GetService("UserInputService")
 local chatbox = nil
 pcall(function()
@@ -76,19 +97,11 @@ end)
 repeat wait() until chatbox ~= nil and chatbox.Parent ~= nil
 depression:Disconnect()
 
--- local texttocopy = ""
--- for i,v in pairs(swears) do
---     texttocopy = texttocopy.."as('"..v.."', '"..replacements[i].."')\n"
--- end
--- texttocopy = texttocopy:gsub(bypasschar, "'..bypasschar..'")
--- print(texttocopy)
--- setclipboard(texttocopy)
-
 while true do
     if chatbox then
         chatbox.FocusLost:Connect(function(pressed)
             if pressed then
-                text = chatbox.Text:split(" ")
+                text = split(chatbox.Text," ")
                 local returning = {}
                 for i,v in pairs(text) do
                     for q,e in pairs(swears) do
