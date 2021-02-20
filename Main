@@ -38,7 +38,7 @@ end)
 2.ˤ
 ]]
 
-local bypasschar = "ʿ"
+local bypasschar = "ˤ"
 
 local swears = {}
 local replacements = {}
